@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "994765774236",
+    "project_id": "namenlosetrinkspielapp",
+    "storage_bucket": "namenlosetrinkspielapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994765774236:android:45e1675f8f32caa25a3c59",
+        "android_client_info": {
+          "package_name": "com.example.namenlosetrinkspielapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "994765774236-g1b1d1mksgu448jtb6qufvkv3sgqa8mc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3t9AtqMm0dXFE-QhN9K0VWXxtLvEBAGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "994765774236-g1b1d1mksgu448jtb6qufvkv3sgqa8mc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
