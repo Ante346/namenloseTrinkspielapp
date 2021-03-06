@@ -113,9 +113,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void nextCard(android.view.View view){
 
-        //TODO Abfrage ob Karten übrig sind
 
-        getNewTask();
+        if(taskCount < tasks.size()){
+            getNewTask();
+        }
+        //TODO Else intent to Endscreen?
     }
 
 }
