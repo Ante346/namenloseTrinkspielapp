@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">namenloseTrinkspielapp</string>
     <string name="next_card">weiter</string>
+    <string name="play">Spielen</string>
+    <string name="add_task">Aufgaben hinzufügen</string>
+    <string name="select_players_header">Spieler auswählen</string>
+    <string name="player_count">Anzahl:</string>
+    <string name="player">Spieler</string>
 </resources>

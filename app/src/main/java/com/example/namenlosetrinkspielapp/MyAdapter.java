@@ -1,28 +1,30 @@
 package com.example.namenlosetrinkspielapp;
 
 import android.content.Context;
+import android.database.DataSetObserver;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.ColorInt;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
 
     private ArrayList<Player> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
+    private int activePlayer;
 
     // data is passed into the constructor
-    MyAdapter(Context context, ArrayList<Player> data) {
+    MyAdapter(Context context, ArrayList<Player> data,int activePlayer) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+        this.activePlayer = activePlayer;
     }
 
     // inflates the row layout from xml when needed
@@ -38,6 +40,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
     public void onBindViewHolder(ViewHolder holder, int position) {
         Player player = mData.get(position);
         holder.button.setText(player.getName());
+        if(position == activePlayer){
+            holder.button.setBackgroundColor(Color.GREEN);
+        }
     }
 
     // total number of rows

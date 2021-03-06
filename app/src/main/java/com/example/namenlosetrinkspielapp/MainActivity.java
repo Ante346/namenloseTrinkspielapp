@@ -1,10 +1,9 @@
 package com.example.namenlosetrinkspielapp;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,10 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private ArrayList<com.example.namenlosetrinkspielapp.Task> tasks = new ArrayList<>();
     private int taskCount = 0;
-    private int playerCount = 0;
+    private int playerCount = -1;
 
     private ArrayList<Player> players = new ArrayList<>();
     private MyAdapter adapter;
@@ -45,13 +41,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //test
-        players.add(new Player("ante"));
-        players.add(new Player("stef"));
-        players.add(new Player("paul"));
-        players.add(new Player("hamster"));
-        players.add(new Player("hias"));
-        players.add(new Player("Ott"));
+        Intent intent = getIntent();
+        String [] playerarray = intent.getStringArrayExtra("players");
+        for(int i=0; i<playerarray.length;i++) {
+            System.out.println(playerarray[i]);
+        }
+        for(int i=0;i<playerarray.length;i++){
+            players.add(new Player(i));
+            players.get(i).setName(playerarray[i]);
+        }
 
         setUpUI();
 
@@ -69,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(layoutManager);
 
 
-        adapter = new MyAdapter(this,players);
+        adapter = new MyAdapter(this,players,playerCount);
 
         mRecyclerView.setAdapter(adapter);
     }
@@ -101,6 +99,16 @@ public class MainActivity extends AppCompatActivity {
         nameView.setText(tasks.get(taskCount).getName());
         descriptionView.setText(tasks.get(taskCount).getDescription());
         taskCount++;
+
+        if(playerCount<players.size()-1) {
+            playerCount++;
+        }else{
+            playerCount = 0;
+        }
+
+        //reset adapter
+        adapter = new MyAdapter(this,players,playerCount);
+        mRecyclerView.setAdapter(adapter);
     }
 
     public void nextCard(android.view.View view){
